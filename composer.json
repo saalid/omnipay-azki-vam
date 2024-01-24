@@ -1,0 +1,10 @@
+{
+    "require": {
+        "league/omnipay": "^3.2"
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
+    }
+}

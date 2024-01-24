@@ -1,6 +1,9 @@
 {
     "require": {
-        "league/omnipay": "^3.2"
+        "ext-json": "*",
+        "ext-mbstring": "*",
+        "league/omnipay": "^3.2",
+        "omnipay/common": "^3"
     },
     "config": {
         "allow-plugins": {

@@ -50,12 +50,9 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
         return $this->getParameter('apiKey');
     }
 
-    /**
-     * @return bool
-     */
-    public function getAutoVerify(): bool
+    public function getMerchantId(): string
     {
-        return (bool)$this->getParameter('autoVerify');
+        return $this->getParameter('merchantId');
     }
 
     /**
@@ -130,6 +127,15 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     }
 
     /**
+     * @param string $value
+     * @return self
+     */
+    public function setMerchantId(string $value): self
+    {
+        return $this->setParameter('merchantId', $value);
+    }
+
+    /**
      * @param bool $autoVerify
      * @return self
      */
@@ -194,6 +200,11 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
         return $this->liveEndpoint;
     }
 
+    public function getSignature() :string
+    {
+        return $this->getUri().'#'.time().'#'.$this->getHttpMethod().'#'.$this->getApiKey();
+    }
+
     /**
      * Send the request with specified data
      *
@@ -217,6 +228,8 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
                 [
                     'Accept' => 'application/json',
                     'Content-type' => 'application/json',
+                    'signature' => $this->getSignature(),
+                    'merchantId' => $this->getMerchantId()
                 ],
                 $body
             );

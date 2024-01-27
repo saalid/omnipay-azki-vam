@@ -1,9 +1,36 @@
 {
+    "name": "amirreza/omnipay-azki-vam",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Omnipay\\AzkiVam\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Omnipay\\AzkiVam\\Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "amirreza.salari",
+            "email": "amirrezasalari1997@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
     "require": {
+        "php": "^7",
         "ext-json": "*",
         "ext-mbstring": "*",
-        "league/omnipay": "^3.2",
-        "omnipay/common": "^3"
+        "omnipay/common": "^3",
+        "symfony/http-client": "^5.4"
+    },
+    "require-dev": {
+        "omnipay/tests": "4.1.1",
+        "phpstan/phpstan": "^1.8",
+        "squizlabs/php_codesniffer": "^3",
+        "http-interop/http-factory-guzzle": "^1.2"
     },
     "config": {
         "allow-plugins": {

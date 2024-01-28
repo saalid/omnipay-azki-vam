@@ -3,6 +3,7 @@
 
 namespace Omnipay\AzkiVam;
 
+use Omnipay\AzkiVam\Message\CreateTicketRequest;
 use Omnipay\Common\AbstractGateway;
 
 class Gateway extends AbstractGateway
@@ -97,7 +98,7 @@ class Gateway extends AbstractGateway
      */
     public function purchase(array $options = [])
     {
-
+        return $this->createRequest(CreateTicketRequest::class, $options);
     }
 
     /**

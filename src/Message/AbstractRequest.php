@@ -220,6 +220,16 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
         return $this->getUri().'#'.time().'#'.$this->getHttpMethod().'#'.$this->getApiKey();
     }
 
+    public function getTicketId() :string
+    {
+        return $this->getParameter('ticketId');
+    }
+
+    public function setTicketId(int $ticketId): self
+    {
+        return $this->setParameter('ticketId', json_encode($ticketId));
+    }
+
     /**
      * Send the request with specified data
      *

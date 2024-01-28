@@ -27,6 +27,14 @@ class CreateTicketRequest extends AbstractRequest
 
     public function getData()
     {
-        // TODO: Implement getData() method.
+        return [
+            "amount" => $this->getAmount(),
+            "redirect_uri" => $this->getReturnUrl(),
+            "fallback_uri" => $this->getFallBackUrl(),
+            "provider_id" => $this->getProviderId(),
+            "mobile_number" => $this->getCustomerPhone(),
+            "merchant_id" => $this->getMerchantId(),
+            "items" => $this->getItems(),
+        ];
     }
 }

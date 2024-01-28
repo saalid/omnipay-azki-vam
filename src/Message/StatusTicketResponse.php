@@ -2,7 +2,7 @@
 
 namespace Omnipay\AzkiVam\Message;
 
-class StatusTicketResoponse
+class StatusTicketResponse
 {
 
 }

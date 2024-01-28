@@ -55,6 +55,16 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
         return $this->getParameter('merchantId');
     }
 
+    public function getProviderId(): int
+    {
+        return rand(10000000, 999999999);
+    }
+
+    public function getFallBackUrl(): string
+    {
+        return $this->getParameter('fallBackUrl');
+    }
+
     /**
      * @return string
      * @throws InvalidRequestException
@@ -74,7 +84,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
         }
 
         $value = $value ?: $this->httpRequest->query->get('Amount');
-        return (string)$value;
+        return (int)$value;
     }
 
     /**
@@ -187,6 +197,11 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     public function setAllowedCard(string $allowedCard): self
     {
         return $this->setParameter('allowedCard', $allowedCard);
+    }
+
+    public function setFallBackUrl(string $fallBackUrl): self
+    {
+        return $this->setParameter('fallBackUrl', $fallBackUrl);
     }
 
     /**

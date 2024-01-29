@@ -4,7 +4,10 @@
 namespace Omnipay\AzkiVam;
 
 use Omnipay\AzkiVam\Message\CreateTicketRequest;
+use Omnipay\AzkiVam\Message\ReverseTicketRequest;
+use Omnipay\AzkiVam\Message\VerifyTicketRequest;
 use Omnipay\Common\AbstractGateway;
+use Omnipay\Nextpay\Message\VerifyOrderRequest;
 
 class Gateway extends AbstractGateway
 {
@@ -26,11 +29,10 @@ class Gateway extends AbstractGateway
     public function getDefaultParameters(): array
     {
         return [
-            'testMode' => false,
-            'apiKey' => '',
-            'redirectUrl' => '',
-            'fallBackUrl' => '',
-            'merchantId' => ''
+            'apiKey' => 'xxxxxxx-xxxxx',
+            'redirectUrl' => 'https://test.com',
+            'fallBackUrl' => 'https://test.com/failed',
+            'merchantId' => '1234213213'
         ];
     }
 
@@ -106,7 +108,7 @@ class Gateway extends AbstractGateway
      */
     public function completePurchase(array $options = [])
     {
-
+        return $this->createRequest(VerifyTicketRequest::class, $options);
     }
 
     /**
@@ -114,7 +116,7 @@ class Gateway extends AbstractGateway
      */
     public function refund(array $options = [])
     {
-
+        return $this->createRequest(ReverseTicketRequest::class, $options);
     }
 
     /**

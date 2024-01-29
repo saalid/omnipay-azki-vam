@@ -125,6 +125,6 @@ class Gateway extends AbstractGateway
      */
     public function getTransactionReferenceKey(): string
     {
-        return 'trans_id';
+        return 'ticket_id';
     }
 }

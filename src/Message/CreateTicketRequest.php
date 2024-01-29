@@ -25,26 +25,16 @@ class CreateTicketRequest extends AbstractRequest
         return new CreateTicketResponse($this, $data);
     }
 
-    public function getSubUrl(): string
-    {
-        return $this->getParameter('subUrl');
-    }
-
-    public function setSubUrl(string $subUrl): self
-    {
-        return $this->setParameter('subUrl', $subUrl);
-    }
-
     public function getData()
     {
         return [
             "amount" => $this->getAmount(),
-            "redirect_uri" => $this->getReturnUrl(),
-            "fallback_uri" => $this->getFallBackUrl(),
-            "provider_id" => $this->getProviderId(),
+            "redirect_uri" => $this->getRedirectUrl(),
+            "fallback_uri" =>  $this->getFallBackUrl(),
+            "provider_id" => $this->createProviderId(),
             "mobile_number" => $this->getCustomerPhone(),
             "merchant_id" => $this->getMerchantId(),
-            "items" => $this->getItems(),
+            "items" => $this->getItems()
         ];
     }
 }

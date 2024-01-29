@@ -23,7 +23,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
      *
      * @var string URL
      */
-    protected $liveEndpoint = 'https://api.azkiloan.com/';
+    protected $liveEndpoint = 'https://api.azkiloan.com';
 
     /**
      * @return string
@@ -53,11 +53,6 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     public function getMerchantId(): string
     {
         return $this->getParameter('merchantId');
-    }
-
-    public function getProviderId(): int
-    {
-        return rand(10000000, 999999999);
     }
 
     public function getFallBackUrl(): string
@@ -93,6 +88,15 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     public function getCustomerPhone(): ?string
     {
         return $this->getParameter('customerPhone');
+    }
+
+    /**
+     * @param string $customerPhone
+     * @return self
+     */
+    public function setCustomerPhone(string $customerPhone): self
+    {
+        return $this->setParameter('customerPhone', $customerPhone);
     }
 
     /**
@@ -154,14 +158,6 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
         return $this->setParameter('autoVerify', $autoVerify);
     }
 
-    /**
-     * @param string $customerPhone
-     * @return self
-     */
-    public function setCustomerPhone(string $customerPhone): self
-    {
-        return $this->setParameter('customerPhone', $customerPhone);
-    }
 
     /**
      * @param mixed $meta
@@ -240,6 +236,26 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
         return $this->setParameter('redirectUrl', $redirectUrl);
     }
 
+    public function getSubUrl(): string
+    {
+        return $this->getParameter('subUrl');
+    }
+
+    public function setSubUrl(string $subUrl): self
+    {
+        return $this->setParameter('subUrl', $subUrl);
+    }
+
+    public function createProviderId(): int
+    {
+        return rand(10000000, 999999999);
+    }
+
+    public function setItems($items): self
+    {
+        return $this->setParameter('items', $items);
+    }
+
     /**
      * Send the request with specified data
      *
@@ -256,7 +272,8 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
             if ($body === false) {
                 throw new RuntimeException('Err in access/refresh token.');
             }
-
+            var_dump($this->createSignature());
+            die();
             $httpResponse = $this->httpClient->request(
                 $this->getHttpMethod(),
                 $this->createUri($this->getEndpoint()),

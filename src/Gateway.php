@@ -7,7 +7,6 @@ use Omnipay\AzkiVam\Message\CreateTicketRequest;
 use Omnipay\AzkiVam\Message\ReverseTicketRequest;
 use Omnipay\AzkiVam\Message\VerifyTicketRequest;
 use Omnipay\Common\AbstractGateway;
-use Omnipay\Nextpay\Message\VerifyOrderRequest;
 
 class Gateway extends AbstractGateway
 {
@@ -30,8 +29,8 @@ class Gateway extends AbstractGateway
     {
         return [
             'apiKey' => 'xxxxxxx-xxxxx',
-            'redirectUrl' => 'https://test.com',
-            'fallBackUrl' => 'https://test.com/failed',
+            'redirectUrl' => 'https://test1.com/redirect',
+            'fallBackUrl' => 'https://test1.com/failed',
             'merchantId' => '1234213213'
         ];
     }
@@ -43,56 +42,6 @@ class Gateway extends AbstractGateway
     {
         parent::initialize($parameters);
         return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getApiKey(): ?string
-    {
-        return $this->getParameter('apiKey');
-    }
-
-    /**
-     * @param string $value
-     * @return self
-     */
-    public function setApiKey(string $value): self
-    {
-        return $this->setParameter('apiKey', $value);
-    }
-
-    /**
-     * @return string
-     */
-    public function getRedirectUrl(): ?string
-    {
-        return $this->getParameter('redirectUrl');
-    }
-
-    public function setRedirectUrl(string $value): self
-    {
-        return $this->setParameter('redirectUrl', $value);
-    }
-
-    public function getFallBackUrl(): ?string
-    {
-        return $this->getParameter('fallBackUrl');
-    }
-
-    public function setFallBackUrl(string $value): self
-    {
-        return $this->setParameter('fallBackUrl', $value);
-    }
-
-    public function getMerchantId(): ?string
-    {
-        return $this->getParameter('merchantId');
-    }
-
-    public function setMerchantId(string $value): self
-    {
-        return $this->setParameter('merchantId', $value);
     }
 
     /**

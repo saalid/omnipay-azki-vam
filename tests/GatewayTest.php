@@ -23,39 +23,28 @@ class GatewayTest extends GatewayTestCase
         parent::setUp();
 
         $this->gateway = Omnipay::create('AzkiVam');
-        $this->gateway->setApiKey('xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx');
-        $this->gateway->setRedirectUrl('https://www.example.com/return');
     }
 
     public function testPurchaseSuccess(): void
     {
-        $this->setMockHttpResponse('PurchaseSuccess.txt');
-
-
-        $paramValue= [
-            "amount" => 90,
-            "redirect_uri" => 'https://asddasd.com/asd',
-            "fallback_uri" => 'https:/test.com/failed',
-            "provider_id" => 123213213,
-            "mobile_number" => '09056619083',
-            "merchant_id" => 213213,
-            "items" => [
-                [
-                    "name" => "کالای شماره ۱",
-                    "count" => 3,
-                    "amount" => 15,
-                    "url" => "https://merchant-website/items/1",
-                ],
-                [
-                    "name" => "کالای شماره ۲",
-                    "count" => 3,
-                    "amount" => 15,
-                    "url" => "https://merchant-website/items/2",
-                ]
-            ],
+        $amount = 60;
+        $customerPhone = '09056619083';
+        $items = [
+            [
+                "name" => "کالای شماره 1",
+                "count" => 6,
+                "amount" => 10,
+                "url" => "https://merchant-website/items/1",
+            ]
         ];
+        $subUrl = '/payment/purchase';
 
-        $response = $this->gateway->purchase($paramValue)->send();
+        $response = $this->gateway->purchase([
+            'subUrl' => $subUrl,
+            'amount' => $amount,
+            'customerPhone' => $customerPhone,
+            'items' => $items,
+        ])->send();
         $responseData=$response->getData();
         self::assertTrue($response->isSuccessful());
         self::assertTrue($response->isRedirect());

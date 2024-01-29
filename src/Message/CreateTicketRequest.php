@@ -25,6 +25,30 @@ class CreateTicketRequest extends AbstractRequest
         return new CreateTicketResponse($this, $data);
     }
 
+    public function getCustomerPhone(): ?string
+    {
+        return $this->getParameter('customerPhone');
+    }
+
+    /**
+     * @param string $customerPhone
+     * @return self
+     */
+    public function setCustomerPhone(string $customerPhone): self
+    {
+        return $this->setParameter('customerPhone', $customerPhone);
+    }
+
+    public function setItems($items): self
+    {
+        return $this->setParameter('items', $items);
+    }
+
+    public function createProviderId(): int
+    {
+        return rand(10000000, 999999999);
+    }
+
     public function getData()
     {
         return [

@@ -217,7 +217,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 
     public function createSignature() :string
     {
-        return $this->getUri().'#'.time().'#'.$this->getHttpMethod().'#'.$this->getApiKey();
+        return $this->getSubUrl().'#'.time().'#'.$this->getHttpMethod().'#'.$this->getApiKey();
     }
 
     public function getTicketId() :string

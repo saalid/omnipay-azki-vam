@@ -28,11 +28,50 @@ class Gateway extends AbstractGateway
     public function getDefaultParameters(): array
     {
         return [
+            'testMode' => false,
             'apiKey' => 'xxxxxxx-xxxxx',
             'redirectUrl' => 'https://test1.com/redirect',
             'fallBackUrl' => 'https://test1.com/failed',
             'merchantId' => '1234213213'
         ];
+    }
+
+    public function getApiKey(): string
+    {
+        return $this->getParameter('apiKey');
+    }
+
+    public function setApiKey(string $value): self
+    {
+        return $this->setParameter('apiKey', $value);
+    }
+
+    public function getRedirectUrl(): string
+    {
+        return $this->getParameter('redirectUrl');
+    }
+
+    public function setRedirectUrl(string $value): self
+    {
+        return $this->setParameter('redirectUrl', $value);
+    }
+    public function getFallBackUrl(): string
+    {
+        return $this->getParameter('fallBackUrl');
+    }
+
+    public function setFallBackUrl(string $value): self
+    {
+        return $this->setParameter('fallBackUrl', $value);
+    }
+    public function getMerchantId(): string
+    {
+        return $this->getParameter('merchantId');
+    }
+
+    public function setMerchantId(string $value): self
+    {
+        return $this->setParameter('merchantId', $value);
     }
 
     /**

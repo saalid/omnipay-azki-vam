@@ -17,7 +17,7 @@ class CreateTicketResponse extends AbstractResponse implements RedirectResponseI
      */
     public function isSuccessful()
     {
-        return (int)$this->getHttpStatus() === 200 && (int)$this->getCode() === -1;
+        return (int)$this->getHttpStatus() === 200 && (int)$this->getCode() === 0;
     }
 
     /**
@@ -25,9 +25,9 @@ class CreateTicketResponse extends AbstractResponse implements RedirectResponseI
      */
     public function isRedirect()
     {
-        return (int)$this->getCode() === -1 &&
-            isset($this->data['ticket_id']) &&
-            !empty($this->data['ticket_id']);
+        return (int)$this->getCode() === 0 &&
+            isset($this->data['result']['ticket_id']) &&
+            !empty($this->data['result']['ticket_id']);
     }
 
     /**
@@ -55,6 +55,6 @@ class CreateTicketResponse extends AbstractResponse implements RedirectResponseI
      */
     public function getTransactionReference()
     {
-        return $this->data['ticket_id'];
+        return $this->data['result']['ticket_id'];
     }
 }

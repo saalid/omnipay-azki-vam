@@ -26,8 +26,8 @@ class CreateTicketResponse extends AbstractResponse implements RedirectResponseI
     public function isRedirect()
     {
         return (int)$this->getCode() === -1 &&
-            isset($this->data['trans_id']) &&
-            !empty($this->data['trans_id']);
+            isset($this->data['ticket_id']) &&
+            !empty($this->data['ticket_id']);
     }
 
     /**
@@ -55,6 +55,6 @@ class CreateTicketResponse extends AbstractResponse implements RedirectResponseI
      */
     public function getTransactionReference()
     {
-        return $this->data['trans_id'];
+        return $this->data['ticket_id'];
     }
 }

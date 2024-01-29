@@ -17,12 +17,22 @@ class CreateTicketRequest extends AbstractRequest
 
     protected function createUri(string $endpoint)
     {
-        return $endpoint . '/payment/purchase';
+        return $endpoint . $this->getSubUrl();
     }
 
     protected function createResponse(array $data)
     {
         return new CreateTicketResponse($this, $data);
+    }
+
+    public function getSubUrl(): string
+    {
+        return $this->getParameter('subUrl');
+    }
+
+    public function setSubUrl(string $subUrl): self
+    {
+        return $this->setParameter('subUrl', $subUrl);
     }
 
     public function getData()

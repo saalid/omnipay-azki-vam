@@ -9,4 +9,4 @@ cache-control: private, must-revalidate
 pragma: no-cache
 expires: -1
 
-{"status":1,"token":"2c3c1fefac5a48geb9f9be7e445dd9b2"}
+{"rsCode":0,"result":{"payment_uri":"https://panel.azkiloan.com/payment?ticketId=PJQPHFwN1AM6EUAJ","ticket_id":"PJQPHFwN1AM6EUAJ"}}

@@ -28,7 +28,6 @@ class Gateway extends AbstractGateway
     public function getDefaultParameters(): array
     {
         return [
-            'testMode' => false,
             'apiKey' => 'xxxxxxx-xxxxx',
             'redirectUrl' => 'https://test1.com/redirect',
             'fallBackUrl' => 'https://test1.com/failed',

@@ -22,10 +22,6 @@ class GatewayTest extends GatewayTestCase
         parent::setUp();
 
         $this->gateway = new Gateway($this->getHttpClient(), $this->getHttpRequest());
-        $this->gateway->setApiKey('xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx');
-        $this->gateway->setRedirectUrl('https://www.example.com/return');
-        $this->gateway->setFallBackUrl('https://www.example.com/return');
-        $this->gateway->getMerchantId("123213");
     }
 
     public function testPurchaseSuccess(): void
@@ -52,8 +48,8 @@ class GatewayTest extends GatewayTestCase
         $responseData = $response->getData();
         self::assertTrue($response->isSuccessful());
         self::assertTrue($response->isRedirect());
-//        self::assertEquals('2c3c1fefac5a48geb9f9be7e445dd9b2',$responseData['token']);
-//        self::assertEquals('https://sep.shaparak.ir/OnlinePG/SendToken?token=2c3c1fefac5a48geb9f9be7e445dd9b2', $response->getRedirectUrl());
+        self::assertEquals('PJQPHFwN1AM6EUAJ',$responseData['result']['ticket_id']);
+        self::assertEquals('https://panel.azkiloan.com/payment?ticketId=PJQPHFwN1AM6EUAJ',$responseData['result']['payment_uri']);
     }
 
 }

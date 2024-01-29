@@ -20,11 +20,11 @@
     ],
     "minimum-stability": "stable",
     "require": {
-        "php": "^7.1",
+        "php": "^8",
         "ext-json": "*",
         "ext-mbstring": "*",
         "omnipay/common": "^3",
-        "symfony/http-client": "^5.4"
+        "symfony/http-client": "^6.4"
     },
     "require-dev": {
         "omnipay/tests": "4.1.1",

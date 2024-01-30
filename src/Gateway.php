@@ -5,6 +5,7 @@ namespace Omnipay\AzkiVam;
 
 use Omnipay\AzkiVam\Message\CreateTicketRequest;
 use Omnipay\AzkiVam\Message\ReverseTicketRequest;
+use Omnipay\AzkiVam\Message\StatusTicketRequest;
 use Omnipay\AzkiVam\Message\VerifyTicketRequest;
 use Omnipay\Common\AbstractGateway;
 
@@ -96,6 +97,11 @@ class Gateway extends AbstractGateway
     public function completePurchase(array $options = [])
     {
         return $this->createRequest(VerifyTicketRequest::class, $options);
+    }
+
+    public function statusPurchase(array $options = [])
+    {
+        return $this->createRequest(StatusTicketRequest::class, $options);
     }
 
     /**

@@ -5,6 +5,7 @@ namespace Omnipay\AzkiVam\Tests;
 use Omnipay\AzkiVam\Gateway;
 use Omnipay\AzkiVam\Message\AbstractResponse;
 use Omnipay\AzkiVam\Message\CreateTicketResponse;
+use Omnipay\AzkiVam\Message\StatusTicketResponse;
 use Omnipay\AzkiVam\Message\VerifyTicketResponse;
 use Omnipay\Tests\GatewayTestCase;
 
@@ -104,6 +105,24 @@ class GatewayTest extends GatewayTestCase
 
         self::assertTrue($response->isSuccessful());
         self::assertTrue($response->isVerified());
+        self::assertEquals('PJQPHFwN1AM6EUAJ',$responseData['result']['ticket_id']);
+    }
+
+    public  function testPurchaseCreatedStatus(): void
+    {
+        $this->setMockHttpResponse('PurchaseCreatedStatus.txt');
+        $subUrl = '/payment/status';
+        $param= [
+            'subUrl' => $subUrl,
+            'ticketId' => 'PJQPHFwN1AM6EUAJ',
+        ];
+        /** @var StatusTicketResponse $response */
+        $response = $this->gateway->statusPurchase($param)->send();
+
+        $responseData=$response->getData();
+
+        self::assertTrue($response->isSuccessful());
+        self::assertTrue($response->isCreated());
         self::assertEquals('PJQPHFwN1AM6EUAJ',$responseData['result']['ticket_id']);
     }
 

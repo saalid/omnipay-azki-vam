@@ -2,6 +2,7 @@
 
 namespace Omnipay\AzkiVam\Message;
 
+use Omnipay\Common\Exception\InvalidRequestException;
 class StatusTicketRequest extends AbstractRequest
 {
 
@@ -22,6 +23,8 @@ class StatusTicketRequest extends AbstractRequest
 
     public function getData()
     {
+        $this->validate('ticketId');
+
         return [
             'ticket_id' => $this->getTicketId()
         ];

@@ -37,17 +37,7 @@ class CreateTicketResponse extends AbstractResponse implements RedirectResponseI
     {
         /** @var CreateTicketRequest $request */
         $request = $this->request;
-        return sprintf('%s/payment/%s', $request->getEndpoint(), $this->getTransactionReference());
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getTransactionId()
-    {
-        /** @var CreateTicketRequest $request */
-        $request = $this->request;
-        return $request->getTransactionId();
+        return sprintf('%s/payment?ticketId=%s', $request->getEndpoint(), $this->getTransactionReference());
     }
 
     /**

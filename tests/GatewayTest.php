@@ -126,4 +126,22 @@ class GatewayTest extends GatewayTestCase
         self::assertEquals('PJQPHFwN1AM6EUAJ',$responseData['result']['ticket_id']);
     }
 
+    public  function testPurchaseExpiredStatus(): void
+    {
+        $this->setMockHttpResponse('PurchaseExpiredStatus.txt');
+        $subUrl = '/payment/status';
+        $param= [
+            'subUrl' => $subUrl,
+            'ticketId' => 'PJQPHFwN1AM6EUAJ',
+        ];
+        /** @var StatusTicketResponse $response */
+        $response = $this->gateway->statusPurchase($param)->send();
+
+        $responseData=$response->getData();
+
+        self::assertTrue($response->isSuccessful());
+        self::assertTrue($response->isExpired());
+        self::assertEquals('PJQPHFwN1AM6EUAJ',$responseData['result']['ticket_id']);
+    }
+
 }

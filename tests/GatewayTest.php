@@ -4,6 +4,7 @@ namespace Omnipay\AzkiVam\Tests;
 
 use Omnipay\AzkiVam\Gateway;
 use Omnipay\AzkiVam\Message\AbstractResponse;
+use Omnipay\AzkiVam\Message\CancelTicketResponse;
 use Omnipay\AzkiVam\Message\CreateTicketResponse;
 use Omnipay\AzkiVam\Message\StatusTicketResponse;
 use Omnipay\AzkiVam\Message\VerifyTicketResponse;
@@ -142,6 +143,23 @@ class GatewayTest extends GatewayTestCase
         self::assertTrue($response->isSuccessful());
         self::assertTrue($response->isExpired());
         self::assertEquals('PJQPHFwN1AM6EUAJ',$responseData['result']['ticket_id']);
+    }
+
+    public  function testPurchaseCancel(): void
+    {
+        $this->setMockHttpResponse('PurchaseCancel.txt');
+        $subUrl = '/payment/cancel';
+        $param= [
+            'subUrl' => $subUrl,
+            'ticketId' => 'PJQPHFwN1AM6EUAJ',
+        ];
+        /** @var CancelTicketResponse $response */
+        $response = $this->gateway->cancelPurchase($param)->send();
+
+        $responseData=$response->getData();
+
+        self::assertTrue($response->isSuccessful());
+        self::assertEquals($response->getFallBackUrl(),$responseData['result']['fallbackUri']);
     }
 
 }

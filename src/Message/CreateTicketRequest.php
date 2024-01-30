@@ -44,10 +44,7 @@ class CreateTicketRequest extends AbstractRequest
         return $this->setParameter('items', $items);
     }
 
-    public function createProviderId(): int
-    {
-        return rand(10000000, 999999999);
-    }
+
 
     public function getData()
     {

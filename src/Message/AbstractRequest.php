@@ -133,6 +133,11 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
         return $this->setParameter('subUrl', $subUrl);
     }
 
+    public function createProviderId(): int
+    {
+        return rand(10000000, 999999999);
+    }
+
 
     /**
      * Send the request with specified data

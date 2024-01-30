@@ -93,7 +93,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     public function getEndpoint(): string
     {
         if ($this->getTestMode()) {
-            throw new \InvalidArgumentException('Nextpay payment gateway does not support test mode.');
+            throw new \InvalidArgumentException('Azkivam payment gateway does not support test mode.');
         }
         return $this->liveEndpoint;
     }
@@ -172,7 +172,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
             return $this->response = $this->createResponse($result);
         } catch (Exception $e) {
             throw new InvalidResponseException(
-                'Error communicating with payment gateway: ' . $e->getMessage(),
+                'Error communicating with azkivam gateway: ' . $e->getMessage(),
                 $e->getCode()
             );
         }

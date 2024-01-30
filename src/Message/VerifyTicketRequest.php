@@ -36,7 +36,7 @@ class VerifyTicketRequest extends AbstractRequest
     public function getData()
     {
         // Validate required parameters before return data
-        
+        $this->validate('ticketId');
         return [
             'ticket_id' => $this->getTicketId()
         ];

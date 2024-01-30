@@ -5,6 +5,7 @@ namespace Omnipay\AzkiVam\Tests;
 use Omnipay\AzkiVam\Gateway;
 use Omnipay\AzkiVam\Message\AbstractResponse;
 use Omnipay\AzkiVam\Message\CreateTicketResponse;
+use Omnipay\AzkiVam\Message\VerifyTicketResponse;
 use Omnipay\Tests\GatewayTestCase;
 
 class GatewayTest extends GatewayTestCase
@@ -84,6 +85,26 @@ class GatewayTest extends GatewayTestCase
         self::assertFalse($response->isRedirect());
         self::assertEquals(18, $responseData['rsCode']);
         self::assertEquals("Signature Invalid", $responseData['message']);
+    }
+
+    public function testCompletePurchaseSuccess(): void
+    {
+        $this->setMockHttpResponse('PurchaseCompleteSuccess.txt');
+        $subUrl = '/payment/verify';
+        $param= [
+            'subUrl' => $subUrl,
+            'ticketId' => 'PJQPHFwN1AM6EUAJ',
+        ];
+
+
+        /** @var VerifyTicketResponse $response */
+        $response = $this->gateway->completePurchase($param)->send();
+
+        $responseData=$response->getData();
+
+        self::assertTrue($response->isSuccessful());
+        self::assertTrue($response->isVerified());
+        self::assertEquals('PJQPHFwN1AM6EUAJ',$responseData['result']['ticket_id']);
     }
 
 }

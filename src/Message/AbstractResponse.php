@@ -45,8 +45,11 @@ abstract class AbstractResponse extends \Omnipay\Common\Message\AbstractResponse
      *
      * @return null|string A response message from the payment gateway
      */
-    public function getMessage() :string
+    public function getMessage($code = "") :string
     {
+        if($code !== ""){
+            return $this->errorCodes[$code];
+        }
         return $this->errorCodes[(string)$this->getCode()] ?? parent::getMessage();
     }
 

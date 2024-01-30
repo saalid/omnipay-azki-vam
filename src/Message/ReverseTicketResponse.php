@@ -13,8 +13,8 @@ class ReverseTicketResponse extends AbstractResponse
     /**
      * @inheritDoc
      */
-    public function isCancelled()
+    public function notFound()
     {
-        return $this->getHttpStatus() === 200 && $this->getCode() !== 0;
+        return $this->getHttpStatus() === 404 && (int)$this->getCode() === 2;
     }
 }

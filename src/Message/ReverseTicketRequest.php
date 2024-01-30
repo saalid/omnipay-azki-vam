@@ -24,7 +24,7 @@ class ReverseTicketRequest extends AbstractRequest
     {
         return [
             'ticket_id' => $this->getTicketId(),
-            'provider_id' => $this->getProviderId()
+            'provider_id' => $this->createProviderId()
         ];
     }
 }

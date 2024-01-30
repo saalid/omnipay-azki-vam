@@ -6,6 +6,8 @@ use Omnipay\AzkiVam\Gateway;
 use Omnipay\AzkiVam\Message\AbstractResponse;
 use Omnipay\AzkiVam\Message\CancelTicketResponse;
 use Omnipay\AzkiVam\Message\CreateTicketResponse;
+use Omnipay\AzkiVam\Message\ReverseTicketRequest;
+use Omnipay\AzkiVam\Message\ReverseTicketResponse;
 use Omnipay\AzkiVam\Message\StatusTicketResponse;
 use Omnipay\AzkiVam\Message\VerifyTicketResponse;
 use Omnipay\Tests\GatewayTestCase;
@@ -160,6 +162,40 @@ class GatewayTest extends GatewayTestCase
 
         self::assertTrue($response->isSuccessful());
         self::assertEquals($response->getFallBackUrl(),$responseData['result']['fallbackUri']);
+    }
+
+    public  function testPurchaseReverse(): void
+    {
+        $this->setMockHttpResponse('PurchaseReverse.txt');
+        $subUrl = '/payment/reverse';
+        $param= [
+            'subUrl' => $subUrl,
+            'ticketId' => 'PJQPHFwN1AM6EUAJ',
+        ];
+        /** @var ReverseTicketResponse $response */
+        $response = $this->gateway->refund($param)->send();
+
+        $responseData=$response->getData();
+
+        self::assertTrue($response->isSuccessful());
+        self::assertEquals("Transaction already reversed", $response->getMessage($responseData['result']['rsCode']));
+    }
+
+    public  function testPurchaseReverseNotFound(): void
+    {
+        $this->setMockHttpResponse('PurchaseReverseNotFound.txt');
+        $subUrl = '/payment/reverse';
+        $param= [
+            'subUrl' => $subUrl,
+            'ticketId' => 'PJQPHFwN1AM6EUAJ',
+        ];
+        /** @var ReverseTicketResponse $response */
+        $response = $this->gateway->refund($param)->send();
+
+        $responseData=$response->getData();
+        self::assertFalse($response->isSuccessful());
+        self::assertTrue($response->notFound());
+        self::assertEquals("Resource Not Found", $response->getMessage());
     }
 
 }

@@ -108,9 +108,9 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
         return $this->getParameter('ticketId');
     }
 
-    public function setTicketId(int $ticketId): self
+    public function setTicketId(string $ticketId): self
     {
-        return $this->setParameter('ticketId', json_encode($ticketId));
+        return $this->setParameter('ticketId', $ticketId);
     }
 
     public function getRedirectUrl() :string

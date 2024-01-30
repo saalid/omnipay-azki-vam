@@ -3,6 +3,7 @@
 namespace Omnipay\AzkiVam\Tests;
 
 use Omnipay\AzkiVam\Gateway;
+use Omnipay\AzkiVam\Message\CreateTicketResponse;
 use Omnipay\Tests\GatewayTestCase;
 
 class GatewayTest extends GatewayTestCase
@@ -39,6 +40,7 @@ class GatewayTest extends GatewayTestCase
         ];
         $subUrl = '/payment/purchase';
 
+        /** @var CreateTicketResponse $response */
         $response = $this->gateway->purchase([
             'subUrl' => $subUrl,
             'amount' => $amount,
@@ -49,7 +51,8 @@ class GatewayTest extends GatewayTestCase
         self::assertTrue($response->isSuccessful());
         self::assertTrue($response->isRedirect());
         self::assertEquals('PJQPHFwN1AM6EUAJ',$responseData['result']['ticket_id']);
-        self::assertEquals('https://panel.azkiloan.com/payment?ticketId=PJQPHFwN1AM6EUAJ',$responseData['result']['payment_uri']);
+        self::assertEquals('https://api.azkiloan.com/payment?ticketId=PJQPHFwN1AM6EUAJ',$responseData['result']['payment_uri']);
+        self::assertEquals('https://api.azkiloan.com/payment?ticketId=PJQPHFwN1AM6EUAJ', $response->getRedirectUrl());
     }
 
 }

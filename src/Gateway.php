@@ -100,12 +100,12 @@ class Gateway extends AbstractGateway
         return $this->createRequest(VerifyTicketRequest::class, $options);
     }
 
-    public function statusPurchase(array $options = [])
+    public function status(array $options = [])
     {
         return $this->createRequest(StatusTicketRequest::class, $options);
     }
 
-    public function cancelPurchase(array $options = [])
+    public function cancel(array $options = [])
     {
         return $this->createRequest(CancelTicketRequest::class, $options);
     }

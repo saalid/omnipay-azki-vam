@@ -9,7 +9,9 @@
 #### The result will be a redirect to the gateway or bank.
 
 ```php
-    $this->gateway = new Gateway($this->getHttpClient(), $this->getHttpRequest());
+    $this->gateway = new Gateway(
+            new Client(new \Http\Adapter\Guzzle7\Client()),
+    );
     $amount = 60;
     $customerPhone = '09xxxxxxxxx';
     $items = [

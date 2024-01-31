@@ -10,6 +10,7 @@ use Omnipay\AzkiVam\Message\ReverseTicketRequest;
 use Omnipay\AzkiVam\Message\ReverseTicketResponse;
 use Omnipay\AzkiVam\Message\StatusTicketResponse;
 use Omnipay\AzkiVam\Message\VerifyTicketResponse;
+use Omnipay\Common\Http\Client;
 use Omnipay\Tests\GatewayTestCase;
 
 class GatewayTest extends GatewayTestCase
@@ -120,7 +121,7 @@ class GatewayTest extends GatewayTestCase
             'ticketId' => 'PJQPHFwN1AM6EUAJ',
         ];
         /** @var StatusTicketResponse $response */
-        $response = $this->gateway->statusPurchase($param)->send();
+        $response = $this->gateway->status($param)->send();
 
         $responseData=$response->getData();
 
@@ -156,7 +157,7 @@ class GatewayTest extends GatewayTestCase
             'ticketId' => 'PJQPHFwN1AM6EUAJ',
         ];
         /** @var CancelTicketResponse $response */
-        $response = $this->gateway->cancelPurchase($param)->send();
+        $response = $this->gateway->cancel($param)->send();
 
         $responseData=$response->getData();
 

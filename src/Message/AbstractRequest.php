@@ -98,12 +98,23 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
         return $this->liveEndpoint;
     }
 
-    public function createSignature() :string
+    public function createPlainSignature(): string
     {
-        return $this->getSubUrl().'#'.time().'#'.$this->getHttpMethod().'#'.$this->getApiKey();
+        return $this->getSubUrl() . '#' . time() . '#' . $this->getHttpMethod() . '#' . $this->getApiKey();
     }
 
-    public function getTicketId() :string
+    public function createSignature(): string
+    {
+        $keyBytes = hex2bin($this->getApiKey());
+        $iv = str_repeat("\0", 16);
+
+        $cipher = "AES-256-CBC";
+        $options = OPENSSL_RAW_DATA;
+        $encrypted = openssl_encrypt($this->createPlainSignature(), $cipher, $keyBytes, $options, $iv);
+        return bin2hex($encrypted);
+    }
+
+    public function getTicketId(): string
     {
         return $this->getParameter('ticketId');
     }
@@ -113,7 +124,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
         return $this->setParameter('ticketId', $ticketId);
     }
 
-    public function getRedirectUrl() :string
+    public function getRedirectUrl(): string
     {
         return $this->getParameter('redirectUrl');
     }
@@ -159,7 +170,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
                 $this->getHttpMethod(),
                 $this->createUri($this->getEndpoint()),
                 [
-                    'Accept' => 'application/json',
+                    'Accept' => '*/*',
                     'Content-type' => 'application/json',
                     'signature' => $this->createSignature(),
                     'merchantId' => $this->getMerchantId()

@@ -20,16 +20,18 @@
     ],
     "minimum-stability": "stable",
     "require": {
-        "php": "^8",
+        "php": "^7.3",
         "ext-json": "*",
         "ext-mbstring": "*",
         "omnipay/common": "^3",
-        "symfony/http-client": "^6.4"
+        "symfony/http-client": "^5"
     },
     "require-dev": {
-        "omnipay/tests": "4.1.1",
-        "phpstan/phpstan": "^1.8",
+        "omnipay/tests": "^4",
+        "php-http/guzzle7-adapter": "^1",
+        "phpunit/phpunit": "^9",
         "squizlabs/php_codesniffer": "^3",
+        "phpstan/phpstan": "^1.8",
         "http-interop/http-factory-guzzle": "^1.2"
     },
     "config": {

@@ -36,8 +36,7 @@ class CreateTicketResponse extends AbstractResponse implements RedirectResponseI
     public function getRedirectUrl()
     {
         /** @var CreateTicketRequest $request */
-        $request = $this->request;
-        return sprintf('%s/payment?ticketId=%s', $request->getEndpoint(), $this->getTransactionReference());
+        return $this->data['result']['payment_uri'];
     }
 
     /**

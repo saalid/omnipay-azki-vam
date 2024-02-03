@@ -7,14 +7,16 @@ use Omnipay\Common\Exception\InvalidRequestException;
 class VerifyTicketRequest extends AbstractRequest
 {
 
+    protected $endPoint = '/payment/verify';
+
     protected function getHttpMethod()
     {
         return 'POST';
     }
 
-    protected function createUri(string $endpoint)
+    protected function createUri(string $baseUrl)
     {
-        return $endpoint . '/payment/verify';
+        return $baseUrl . $this->endPoint;
     }
 
     /**

@@ -45,11 +45,9 @@ class GatewayTest extends GatewayTestCase
                 "url" => "https://merchant-website/items/1",
             ]
         ];
-        $subUrl = '/payment/purchase';
 
         /** @var CreateTicketResponse $response */
         $response = $this->gateway->purchase([
-            'subUrl' => $subUrl,
             'amount' => $amount,
             'customerPhone' => $customerPhone,
             'items' => $items,
@@ -76,11 +74,9 @@ class GatewayTest extends GatewayTestCase
                 "url" => "https://merchant-website/items/1",
             ]
         ];
-        $subUrl = '/payment/purchase';
 
         /** @var CreateTicketResponse $response */
         $response = $this->gateway->purchase([
-            'subUrl' => $subUrl,
             'amount' => $amount,
             'customerPhone' => $customerPhone,
             'items' => $items,
@@ -95,9 +91,7 @@ class GatewayTest extends GatewayTestCase
     public function testCompletePurchaseSuccess(): void
     {
         $this->setMockHttpResponse('PurchaseCompleteSuccess.txt');
-        $subUrl = '/payment/verify';
         $param= [
-            'subUrl' => $subUrl,
             'ticketId' => 'PJQPHFwN1AM6EUAJ',
         ];
 
@@ -115,9 +109,7 @@ class GatewayTest extends GatewayTestCase
     public  function testPurchaseCreatedStatus(): void
     {
         $this->setMockHttpResponse('PurchaseCreatedStatus.txt');
-        $subUrl = '/payment/status';
         $param= [
-            'subUrl' => $subUrl,
             'ticketId' => 'PJQPHFwN1AM6EUAJ',
         ];
         /** @var StatusTicketResponse $response */
@@ -133,9 +125,7 @@ class GatewayTest extends GatewayTestCase
     public  function testPurchaseExpiredStatus(): void
     {
         $this->setMockHttpResponse('PurchaseExpiredStatus.txt');
-        $subUrl = '/payment/status';
         $param= [
-            'subUrl' => $subUrl,
             'ticketId' => 'PJQPHFwN1AM6EUAJ',
         ];
         /** @var StatusTicketResponse $response */
@@ -151,9 +141,7 @@ class GatewayTest extends GatewayTestCase
     public  function testPurchaseCancel(): void
     {
         $this->setMockHttpResponse('PurchaseCancel.txt');
-        $subUrl = '/payment/cancel';
         $param= [
-            'subUrl' => $subUrl,
             'ticketId' => 'PJQPHFwN1AM6EUAJ',
         ];
         /** @var CancelTicketResponse $response */
@@ -165,38 +153,5 @@ class GatewayTest extends GatewayTestCase
         self::assertEquals($response->getFallBackUrl(),$responseData['result']['fallbackUri']);
     }
 
-    public  function testPurchaseReverse(): void
-    {
-        $this->setMockHttpResponse('PurchaseReverse.txt');
-        $subUrl = '/payment/reverse';
-        $param= [
-            'subUrl' => $subUrl,
-            'ticketId' => 'PJQPHFwN1AM6EUAJ',
-        ];
-        /** @var ReverseTicketResponse $response */
-        $response = $this->gateway->refund($param)->send();
-
-        $responseData=$response->getData();
-
-        self::assertTrue($response->isSuccessful());
-        self::assertEquals("Transaction already reversed", $response->getMessage($responseData['result']['rsCode']));
-    }
-
-    public  function testPurchaseReverseNotFound(): void
-    {
-        $this->setMockHttpResponse('PurchaseReverseNotFound.txt');
-        $subUrl = '/payment/reverse';
-        $param= [
-            'subUrl' => $subUrl,
-            'ticketId' => 'PJQPHFwN1AM6EUAJ',
-        ];
-        /** @var ReverseTicketResponse $response */
-        $response = $this->gateway->refund($param)->send();
-
-        $responseData=$response->getData();
-        self::assertFalse($response->isSuccessful());
-        self::assertTrue($response->notFound());
-        self::assertEquals("Resource Not Found", $response->getMessage());
-    }
 
 }

@@ -11,9 +11,9 @@ class ReverseTicketRequest extends AbstractRequest
         return 'POST';
     }
 
-    protected function createUri(string $endpoint)
+    protected function createUri(string $baseUrl)
     {
-        return $endpoint . $this->endPoint;
+        return $baseUrl . $this->endPoint;
     }
 
     protected function createResponse(array $data)

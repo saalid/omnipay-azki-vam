@@ -6,14 +6,15 @@ use Omnipay\Common\Exception\InvalidRequestException;
 class StatusTicketRequest extends AbstractRequest
 {
 
+    protected $endPoint = '/payment/status';
     protected function getHttpMethod()
     {
         return 'POST';
     }
 
-    protected function createUri(string $endpoint)
+    protected function createUri(string $baseUrl)
     {
-        return $endpoint . '/payment/status';
+        return $baseUrl . $this->endPoint;
     }
 
     protected function createResponse(array $data)

@@ -10,14 +10,16 @@ namespace Omnipay\AzkiVam\Message;
 class CreateTicketRequest extends AbstractRequest
 {
 
+    protected  $endPoint = '/payment/purchase';
+
     protected function getHttpMethod()
     {
         return 'POST';
     }
 
-    protected function createUri(string $endpoint)
+    protected function createUri(string $baseUrl)
     {
-        return $endpoint . $this->getSubUrl();
+        return $baseUrl . $this->endPoint;
     }
 
     protected function createResponse(array $data)

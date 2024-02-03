@@ -19,11 +19,18 @@ use Omnipay\Common\Message\ResponseInterface;
 abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 {
     /**
-     * Live Endpoint URL
+     * Live BaseUrl URL
      *
      * @var string URL
      */
-    protected $liveEndpoint = 'https://api.azkiloan.com';
+    protected $baseUrl = 'https://api.azkiloan.com';
+
+    /**
+     * Live EndPoint URL
+     *
+     * @var string URL
+     */
+    protected $endPoint;
 
     /**
      * @return string
@@ -31,10 +38,10 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     abstract protected function getHttpMethod();
 
     /**
-     * @param string $endpoint
+     * @param string $baseurl
      * @return string
      */
-    abstract protected function createUri(string $endpoint);
+    abstract protected function createUri(string $baseUrl);
 
     /**
      * @param array $data
@@ -95,12 +102,12 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
         if ($this->getTestMode()) {
             throw new \InvalidArgumentException('Azkivam payment gateway does not support test mode.');
         }
-        return $this->liveEndpoint;
+        return $this->baseUrl;
     }
 
     public function createPlainSignature(): string
     {
-        return $this->getSubUrl() . '#' . time() . '#' . $this->getHttpMethod() . '#' . $this->getApiKey();
+        return $this->endPoint . '#' . time() . '#' . $this->getHttpMethod() . '#' . $this->getApiKey();
     }
 
     public function createSignature(): string

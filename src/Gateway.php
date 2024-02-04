@@ -39,6 +39,8 @@ class Gateway extends AbstractGateway
         ];
     }
 
+
+
     public function getApiKey(): string
     {
         return $this->getParameter('apiKey');

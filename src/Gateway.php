@@ -21,7 +21,7 @@ class Gateway extends AbstractGateway
      */
     public function getName(): string
     {
-        return 'AzkiVam';
+        return 'Azkivam';
     }
 
     /**

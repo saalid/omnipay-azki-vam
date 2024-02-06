@@ -1,6 +1,6 @@
 <?php
 
-namespace Omnipay\AzkiVam\Message;
+namespace Omnipay\Azkivam\Message;
 
 use Omnipay\Common\Exception\InvalidRequestException;
 class CancelTicketRequest extends AbstractRequest

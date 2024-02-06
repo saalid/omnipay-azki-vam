@@ -1,13 +1,13 @@
 <?php
 
 
-namespace Omnipay\AzkiVam;
+namespace Omnipay\Azkivam;
 
-use Omnipay\AzkiVam\Message\CancelTicketRequest;
-use Omnipay\AzkiVam\Message\CreateTicketRequest;
-use Omnipay\AzkiVam\Message\ReverseTicketRequest;
-use Omnipay\AzkiVam\Message\StatusTicketRequest;
-use Omnipay\AzkiVam\Message\VerifyTicketRequest;
+use Omnipay\Azkivam\Message\CancelTicketRequest;
+use Omnipay\Azkivam\Message\CreateTicketRequest;
+use Omnipay\Azkivam\Message\ReverseTicketRequest;
+use Omnipay\Azkivam\Message\StatusTicketRequest;
+use Omnipay\Azkivam\Message\VerifyTicketRequest;
 use Omnipay\Common\AbstractGateway;
 
 class Gateway extends AbstractGateway

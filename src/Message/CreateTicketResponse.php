@@ -1,11 +1,11 @@
 <?php
 
 /**
- * @package Omnipay\AzkiVam
+ * @package Omnipay\Azkivam
  * @author Amirreza Salari <amirrezasalari1997@gmail.com>
  */
 
-namespace Omnipay\AzkiVam\Message;
+namespace Omnipay\Azkivam\Message;
 
 use Omnipay\Common\Message\RedirectResponseInterface;
 

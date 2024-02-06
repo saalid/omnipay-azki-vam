@@ -4,12 +4,12 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Omnipay\\AzkiVam\\": "src/"
+            "Omnipay\\Azkivam\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Omnipay\\AzkiVam\\Tests\\": "tests/"
+            "Omnipay\\Azkivam\\Tests\\": "tests/"
         }
     },
     "authors": [

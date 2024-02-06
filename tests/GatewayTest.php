@@ -1,15 +1,15 @@
 <?php
 
-namespace Omnipay\AzkiVam\Tests;
+namespace Omnipay\Azkivam\Tests;
 
-use Omnipay\AzkiVam\Gateway;
-use Omnipay\AzkiVam\Message\AbstractResponse;
-use Omnipay\AzkiVam\Message\CancelTicketResponse;
-use Omnipay\AzkiVam\Message\CreateTicketResponse;
-use Omnipay\AzkiVam\Message\ReverseTicketRequest;
-use Omnipay\AzkiVam\Message\ReverseTicketResponse;
-use Omnipay\AzkiVam\Message\StatusTicketResponse;
-use Omnipay\AzkiVam\Message\VerifyTicketResponse;
+use Omnipay\Azkivam\Gateway;
+use Omnipay\Azkivam\Message\AbstractResponse;
+use Omnipay\Azkivam\Message\CancelTicketResponse;
+use Omnipay\Azkivam\Message\CreateTicketResponse;
+use Omnipay\Azkivam\Message\ReverseTicketRequest;
+use Omnipay\Azkivam\Message\ReverseTicketResponse;
+use Omnipay\Azkivam\Message\StatusTicketResponse;
+use Omnipay\Azkivam\Message\VerifyTicketResponse;
 use Omnipay\Common\Http\Client;
 use Omnipay\Tests\GatewayTestCase;
 

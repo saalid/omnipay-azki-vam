@@ -1,10 +1,10 @@
 <?php
 
-namespace Omnipay\AzkiVam\Message;
+namespace Omnipay\Azkivam\Message;
 
 
 /**
- * @package Omnipay\AzkiVam
+ * @package Omnipay\Azkivam
  * @author Amirreza Salari <amirrezasalari1997@gmail.com>
  */
 

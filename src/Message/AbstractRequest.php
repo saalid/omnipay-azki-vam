@@ -1,11 +1,11 @@
 <?php
 
 /**
- * @package Omnipay\AzkiVam
+ * @package Omnipay\Azkivam
  * @author Amirreza Salari <amirrezasalari1997@gmail.com>
  */
 
-namespace Omnipay\AzkiVam\Message;
+namespace Omnipay\Azkivam\Message;
 
 use Exception;
 use RuntimeException;
@@ -190,7 +190,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
             return $this->response = $this->createResponse($result);
         } catch (Exception $e) {
             throw new InvalidResponseException(
-                'Error communicating with azkivam gateway: ' . $e->getMessage(),
+                'Error communicating with Azkivam gateway: ' . $e->getMessage(),
                 $e->getCode()
             );
         }

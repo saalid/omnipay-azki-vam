@@ -1,6 +1,6 @@
 <?php
 
-namespace Omnipay\AzkiVam\Message;
+namespace Omnipay\Azkivam\Message;
 
 class VerifyTicketResponse extends AbstractResponse
 {

@@ -1,11 +1,11 @@
 <?php
 
 /**
- * @package Omnipay\AzkiVam
+ * @package Omnipay\Azkivam
  * @author Amirreza Salari <amirrezasalari1997@gmail.com>
  */
 
-namespace Omnipay\AzkiVam\Message;
+namespace Omnipay\Azkivam\Message;
 
 class CreateTicketRequest extends AbstractRequest
 {
